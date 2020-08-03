@@ -64,3 +64,24 @@ class CategoryTest(TestCase):
         self.fun.update_category(self.fun.id,'sports')
         update = Category.objects.get(name = "sports")
         self.assertEqual(update.name, 'sports')
+
+class PhotosTestClass(TestCase):
+    def setUp(self):
+    
+        self.fun = Category( name= "fun")
+        self.ny = Location (name = "ny")
+        self.art = Photos(photo_image = "art.jpg", name ='art', description = 'artistic', category= self.fun, location= self.ny)
+
+    def tearDown(self):
+       
+        Photos.objects.all().delete()
+        Category.objects.all().delete()
+        Location.objects.all().delete()
+
+    def test_photo_instance(self):
+       
+        self.assertTrue(isinstance(self.art, Photos))
+
+    def test_image_instance(self):
+        
+        self.assertTrue(isinstance(self.art, Photos))
