@@ -51,3 +51,41 @@ class Photos(models.Model):
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
     photo_image = models.ImageField(upload_to = 'photos/')
+
+    def save_photo(self):
+        self.save()
+
+    def __str__(self):
+        return self.name
+
+    def delete_photo(self):
+        self.delete()
+        
+
+    @classmethod
+    def search_by_category(cls,search_term):
+        album = cls.objects.filter(category__name__icontains=search_term)
+        return album
+
+    @classmethod
+    def todays_album(cls):
+        # today = dt.date.today()
+        album = cls.objects.filter()
+        return album
+
+    @classmethod
+    def get_album_by_id(cls, id):
+        album_id = cls.objects.get(id=id)
+        return album_id
+    def album_id(self):
+        self.copy()
+
+    @classmethod
+    def filter_by_location(cls,location):
+        searched = Location.objects.get(name = location)
+        album = Photos.objects.filter(location = searched.id)
+        return album 
+
+    @classmethod
+    def display_all_photos(cls):
+        return cls.objects.all()
