@@ -19,3 +19,10 @@ def search_results(request):
 
     else:
         return render(request, 'search.html')
+
+def photos(request,photos_id):
+    try:
+        photos = Photos.objects.get(id = photos_id)
+    except DoesNotExist:
+        raise Http404()
+    return render(request,"photo.html", {"photos":photos})   
