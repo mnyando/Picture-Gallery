@@ -13,7 +13,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-class tag(models.Model):
+class Tag(models.Model):
     name = models.CharField(max_length=30)
 
     def __str__(self):
@@ -22,7 +22,7 @@ class tag(models.Model):
 class Photos(models.Model):
     name = models.CharField(max_length=40)
     description = models.TextField()
-    tag = models.ManyToManyField(tag)
+    tag = models.ManyToManyField(Tag)
     location = models.ForeignKey(Location,on_delete=models.CASCADE)
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
