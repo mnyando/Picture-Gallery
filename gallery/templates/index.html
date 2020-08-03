@@ -1,5 +1,21 @@
 {%extends 'base.html'%}
 
 {% block content %}
-<h1>This is the beginning</h1>
+<div class = "jumbotron">
+    <h1 id = "kk" class="text-center">Welcome to Picture Gallery</h1>
+    <p id = "kj" class="text-center">Browse photos below</p>
+</div>
+<div class="container">
+    <div class="row">
+        {% if photos %}
+          {% for photo in photos %}
+          <div class="col-md-3">
+              <div class="card">
+                  <img src="{{photo.photo_image.url}}" class="img-responsive" alt="image" style="width: 1200%; height: 250px;">
+              </div>
+          </div>
+          {% endfor %} 
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
