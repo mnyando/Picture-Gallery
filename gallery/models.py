@@ -27,12 +27,6 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-class Tag(models.Model):
-    name = models.CharField(max_length=30)
-
-    def __str__(self):
-        return self.name
-
     def save_category(self):
         self.save()
 
@@ -42,6 +36,12 @@ class Tag(models.Model):
     @classmethod
     def update_category(cls,id,name):
         cls.objects.filter(id = id).update(name = name)
+
+class Tag(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
 
 class Photos(models.Model):
     name = models.CharField(max_length=40)

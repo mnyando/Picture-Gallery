@@ -13,21 +13,54 @@ class TagTestCase(TestCase):
 class LocationTest(TestCase):
     def setUp(self):
         '''new instance before test'''
-        self.nairobi = Location(name='nairobi')
+        self.ny = Location(name='ny')
 
     def tearDown(self):
         Location.objects.all().delete()
 
     def test_location_instance(self):
-        self.assertTrue(isinstance(self.nairobi, Location))
+        self.assertTrue(isinstance(self.ny, Location))
 
     def test_save_location(self):
-        self.nairobi.save_location()
+        self.ny.save_location()
         location = Location.objects.all()
         self.assertEqual(len(location), 1)
 
     def test_update_location(self):
-        self.nairobi.save_location()
-        self.nairobi.update_location(self.nairobi.id,'maldives')
-        update = Location.objects.get(name = "maldives")
-        self.assertEqual(update.name, 'maldives')
+        self.ny.save_location()
+        self.ny.update_location(self.ny.id,'kenya')
+        update = Location.objects.get(name = "kenya")
+        self.assertEqual(update.name, 'kenya')
+
+class CategoryTest(TestCase):
+    def setUp(self):
+        
+        self.fun = Category(name = "fun")
+
+    def tearDown(self):
+        
+        Category.objects.all().delete()
+
+    def test_category_instance(self):
+        
+        self.assertTrue(isinstance(self.fun, Category))
+
+    def test_save_category_method(self):
+        self.fun.save_category()
+        categories = Category.objects.all()
+        self.assertTrue(len(categories) == 1)
+
+    def test_delete_category(self):
+        self.fun.save_category()
+        categories1 = Category.objects.all()
+        self.assertEqual(len(categories1),1)
+        self.fun.delete_category()
+        categories2 = Category.objects.all()
+        self.assertEqual(len(categories2),0)
+
+    def test_update_category(self):
+        
+        self.fun.save_category()
+        self.fun.update_category(self.fun.id,'sports')
+        update = Category.objects.get(name = "sports")
+        self.assertEqual(update.name, 'sports')
