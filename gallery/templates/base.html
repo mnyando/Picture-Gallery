@@ -1,0 +1,21 @@
+{% load bootstrap3 %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  {% if title %}
+  <title>Picture Gallery - {{title}}</title>
+  {% else %}
+    <title> Picture Gallery </title>
+  {% endif %}
+  
+  {% block styles %}
+    {% bootstrap_css %}
+  {% endblock %}
+
+</head>
+<body>
+    {% block content %}{%endblock%}
+</body>
+</html>
