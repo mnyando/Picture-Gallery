@@ -6,7 +6,8 @@ from .models import Photos, Location
 # Create your views here.
 def index(request):
     photos = Photos.todays_album()
-    return render(request, 'index.html', {"photos": photos})
+    locations = Location.objects.all()
+    return render(request, 'index.html', {"photos": photos,"locations": locations})
 
 def search_results(request):
 
@@ -26,3 +27,9 @@ def photos(request,photos_id):
     except DoesNotExist:
         raise Http404()
     return render(request,"photo.html", {"photos":photos})   
+
+def location(request,location):
+    locations = Location.objects.all()
+    selected_location = Location.objects.get(id = location)
+    album = Photos.objects.filter(location = selected_location.id)
+    return render(request, 'location.html', {"location":selected_location,"locations":locations,"album":album})
