@@ -33,6 +33,16 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+    def save_category(self):
+        self.save()
+
+    def delete_category(self):
+        self.delete()
+
+    @classmethod
+    def update_category(cls,id,name):
+        cls.objects.filter(id = id).update(name = name)
+
 class Photos(models.Model):
     name = models.CharField(max_length=40)
     description = models.TextField()
