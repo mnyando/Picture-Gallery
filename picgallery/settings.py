@@ -34,7 +34,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'bootstrap3',
-    'gallery.apps.GalleryConfig',
+    'gallery',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'picgallery.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 MODE=config("MODE", default="dev")
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = config('DEBUG', default=True, cast=bool)
 # development
 if config('MODE')=="dev":
    DATABASES = {
