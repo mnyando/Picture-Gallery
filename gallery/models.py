@@ -46,7 +46,6 @@ class Tag(models.Model):
 class Photos(models.Model):
     name = models.CharField(max_length=40)
     description = models.TextField()
-    tag = models.ManyToManyField(Tag)
     location = models.ForeignKey(Location,on_delete=models.CASCADE)
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
